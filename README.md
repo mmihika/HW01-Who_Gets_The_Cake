@@ -2,7 +2,7 @@
 
 ## Learning Goals
 1. Dynamic Memory (malloc)
-2. Algorithm design
+2. Algorithm design (count `n` and `k`)
 
 ## Problem Statement
 Imagine that there are `n` people, represented by `n` elements in an array. In C, an array's index starts from 0 (i.e., indexes 0, 1, 2, ..., n-1). For clarity in the example, we will refer to these people by their conceptual number from 1 to `n` (so person `P` is at array index `P-1`).
