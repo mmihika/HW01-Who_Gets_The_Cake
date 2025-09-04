@@ -27,7 +27,7 @@ void eliminate(int n, int k)
     // If it failed, print an error message to stderr and exit the program.
     if (peopleArray == NULL) 
     {
-        printf(stderr, "\nMemory allocation failed");
+        printf("\nMemory allocation failed");
     }
 
     // 3. Initialize Variables:
@@ -105,7 +105,7 @@ void eliminate(int n, int k)
     {
         if (peopleArray[i] == 0)
         {
-            printf(i, "%d\n");
+            printf("%d\n",i);
         }
     }
 
