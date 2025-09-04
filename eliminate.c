@@ -17,6 +17,11 @@ void eliminate(int n, int k)
     //char *cake_fans; // Declare a pointer to char
     // 0 is in and 1 is eliminated
     char *peopleArray = malloc(n * sizeof(char));
+    if (peopleArray == NULL) 
+    {
+        fprintf(stderr, "\nMemory allocation failed");
+        return;
+    }
     // Making each element in array set to 0
     for (int i = 0; i < n; i++)
     {
@@ -25,10 +30,6 @@ void eliminate(int n, int k)
     // 2. Error Handling:
     // Check if the memory allocation failed (i.e., if malloc returned NULL).
     // If it failed, print an error message to stderr and exit the program.
-    if (peopleArray == NULL) 
-    {
-        printf("\nMemory allocation failed");
-    }
 
     // 3. Initialize Variables:
     // `eliminated`: Counts how many people have been removed so far.
@@ -53,9 +54,16 @@ void eliminate(int n, int k)
         // Then, use `continue` to restart the loop iteration.
         if (peopleArray[iter] == 1)
         {
-            iter = iter + step;
             //wrap-around
-            iter = (iter + step) % n;
+            iter = (iter + step);
+            if (iter > n - 1)
+            {
+                iter = 0;
+            }
+            else if (iter < 0)
+            {
+                iter = n - 1;
+            }
             // jumps to next iteration
             continue;
         }
@@ -83,17 +91,25 @@ void eliminate(int n, int k)
             // Increment the `eliminated` count.
             eliminated++;
             // Print the index of the eliminated person.
-            printf("%d\n", iter);
+            printf("%d\n", iter + 1);
             // Remember that array indices are 0-based, but people are typically numbered 1 to 'n'.
         }
 
         // d. Move to Next Person:
         // Update `iter` by adding `step`.
-        iter = iter + step;
         // Handle wrap-around for `iter`:
         // If `iter` goes below 0, wrap it to the end of the array (`n - 1`).
         // If `iter` goes above `n - 1`, wrap it back to the beginning of the array (0).
-        iter = (iter + step) % n;
+        //wrap-around
+        iter = (iter + step);
+        if (iter > n - 1)
+        {
+            iter = 0;
+        }
+            else if (iter < 0)
+        {
+            iter = n - 1;
+        }
     }
 
     // 5. Find and Print the Last Remaining Person:
@@ -105,7 +121,7 @@ void eliminate(int n, int k)
     {
         if (peopleArray[i] == 0)
         {
-            printf("%d\n",i);
+            printf("%d\n",i + 1);
         }
     }
 
