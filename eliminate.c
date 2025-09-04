@@ -15,11 +15,21 @@ void eliminate(int n, int k)
     // (e.g., 0 for "still in" and 1 for "eliminated").
     // dynamically allocate memory for 'n' characters.
     //char *cake_fans; // Declare a pointer to char
-
+    // 0 is in and 1 is eliminated
+    char *peopleArray = (n);
+    char *peopleArray = malloc(n * sizeof(char));
+    
     // 2. Error Handling:
     // Check if the memory allocation failed (i.e., if malloc returned NULL).
     // If it failed, print an error message to stderr and exit the program.
-
+    if (peopleArray == NULL) 
+    {
+        printf(stderr, "Memory allocation failed");
+    }
+    else
+    {
+        free(peopleArray);
+    }
 
     // 3. Initialize Variables:
     // `eliminated`: Counts how many people have been removed so far.
@@ -42,6 +52,8 @@ void eliminate(int n, int k)
     // The loop continues as long as not everyone except one person has been eliminated.
     while (eliminated < n - 1)
     {
+
+
         // a. Skip Eliminated People:
         // If the person at the current `iter` index has already been eliminated (marked with 1),
         // increment `iter` by `step` and handle wrap-around without incrementing `counter`.
