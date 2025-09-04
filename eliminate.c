@@ -16,80 +16,84 @@ void eliminate(int n, int k)
     // dynamically allocate memory for 'n' characters.
     //char *cake_fans; // Declare a pointer to char
     // 0 is in and 1 is eliminated
-    char *peopleArray = (n);
     char *peopleArray = malloc(n * sizeof(char));
-    
+    // Making each element in array set to 0
+    for (int i = 0; i < n; i++)
+    {
+        peopleArray[i] = 0;
+    }
     // 2. Error Handling:
     // Check if the memory allocation failed (i.e., if malloc returned NULL).
     // If it failed, print an error message to stderr and exit the program.
     if (peopleArray == NULL) 
     {
-        printf(stderr, "Memory allocation failed");
-    }
-    else
-    {
-        free(peopleArray);
+        printf(stderr, "\nMemory allocation failed");
     }
 
     // 3. Initialize Variables:
     // `eliminated`: Counts how many people have been removed so far.
     // The loop should continue until `n - 1` people are eliminated, leaving one survivor.
     int eliminated = 0;
-
     // `step`: Determines the direction of counting.
     // It should start as 1 (forward) and alternate to -1 (backward) after each elimination.
     int step = 1;
-
     // `iter`: Represents the current person's index in the circle (0 to n-1).
     // This is the index of the person currently being considered.
     int iter = 0;
-
     // `counter`: Keeps track of the count towards 'k'.
     // When this counter reaches 'k', the current person is eliminated.
     int counter = 0;
-
     // 4. Main Elimination Loop:
     // The loop continues as long as not everyone except one person has been eliminated.
     while (eliminated < n - 1)
     {
-
-
         // a. Skip Eliminated People:
         // If the person at the current `iter` index has already been eliminated (marked with 1),
         // increment `iter` by `step` and handle wrap-around without incrementing `counter`.
         // Then, use `continue` to restart the loop iteration.
-
-
-
+        if (peopleArray[iter] == 1)
+        {
+            iter = iter + step;
+            //wrap-around
+            iter = (iter + step) % n;
+            // jumps to next iteration
+            continue;
+        }
         // b. Count Current Person:
         // If the person at `iter` is still in the game, increment `counter`.
-
-
+        counter++;
         // c. Check for Elimination:
         // If `counter` reaches `k`, it's time to eliminate someone.
         if (counter == k)
         {
             // Reset `counter` for the next round of counting.
-
+            counter = 0;
             // Change `step` direction: If it was 1, make it -1; if it was -1, make it 1.
             // This can be done with a ternary operator or an if-else statement.
-
+            if (step == 1)
+            {
+                step = -1;
+            }
+            else
+            {
+                step = 1;
+            }
             // Mark the current person at `iter` as eliminated in your `cake_fans` array.
-
+            peopleArray[iter] = 1;
             // Increment the `eliminated` count.
-
+            eliminated++;
             // Print the index of the eliminated person.
+            printf("%d\n", iter);
             // Remember that array indices are 0-based, but people are typically numbered 1 to 'n'.
-            
         }
 
         // d. Move to Next Person:
         // Update `iter` by adding `step`.
-
+        iter = iter + step;
         // Handle wrap-around for `iter`:
         // If `iter` goes below 0, wrap it to the end of the array (`n - 1`).
         // If `iter` goes above `n - 1`, wrap it back to the beginning of the array (0).
-
+        iter = (iter + step) % n;
     }
 
     // 5. Find and Print the Last Remaining Person:
@@ -101,13 +105,11 @@ void eliminate(int n, int k)
     {
         if (peopleArray[i] == 0)
         {
-            printf(i);
+            printf(i, "%d\n");
         }
-        i++;
     }
-    
 
     // 6. Memory Deallocation:
     // Free the dynamically allocated memory to prevent memory leaks.
-    
+    free(peopleArray);
 }
