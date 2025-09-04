@@ -38,11 +38,11 @@ void eliminate(int n, int k)
 
     // `step`: Determines the direction of counting.
     // It should start as 1 (forward) and alternate to -1 (backward) after each elimination.
-    //int step = 1;
+    int step = 1;
 
     // `iter`: Represents the current person's index in the circle (0 to n-1).
     // This is the index of the person currently being considered.
-    //int iter = 0;
+    int iter = 0;
 
     // `counter`: Keeps track of the count towards 'k'.
     // When this counter reaches 'k', the current person is eliminated.
@@ -58,6 +58,7 @@ void eliminate(int n, int k)
         // If the person at the current `iter` index has already been eliminated (marked with 1),
         // increment `iter` by `step` and handle wrap-around without incrementing `counter`.
         // Then, use `continue` to restart the loop iteration.
+
 
 
         // b. Count Current Person:
@@ -96,6 +97,14 @@ void eliminate(int n, int k)
     // Iterate through the `cake_fans` array from index 0 until you find the person
     // who is not marked as eliminated (i.e., their value is 0).
     // Print their index (remembering the 1-based numbering).
+    for (int i = 0; i < n; i++)
+    {
+        if (peopleArray[i] == 0)
+        {
+            printf(i);
+        }
+        i++;
+    }
     
 
     // 6. Memory Deallocation:
