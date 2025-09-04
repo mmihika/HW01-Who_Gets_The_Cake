@@ -14,7 +14,7 @@ void eliminate(int n, int k)
     // A 'char' type is sufficient because you only need to store a boolean state
     // (e.g., 0 for "still in" and 1 for "eliminated").
     // dynamically allocate memory for 'n' characters.
-    char *cake_fans; // Declare a pointer to char
+    //char *cake_fans; // Declare a pointer to char
 
     // 2. Error Handling:
     // Check if the memory allocation failed (i.e., if malloc returned NULL).
@@ -28,11 +28,11 @@ void eliminate(int n, int k)
 
     // `step`: Determines the direction of counting.
     // It should start as 1 (forward) and alternate to -1 (backward) after each elimination.
-    int step = 1;
+    //int step = 1;
 
     // `iter`: Represents the current person's index in the circle (0 to n-1).
     // This is the index of the person currently being considered.
-    int iter = 0;
+    //int iter = 0;
 
     // `counter`: Keeps track of the count towards 'k'.
     // When this counter reaches 'k', the current person is eliminated.
